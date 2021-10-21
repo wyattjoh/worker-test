@@ -1,4 +1,5 @@
 import { parentPort, workerData } from "worker_threads";
+import wait from "./wait.js";
 
 function handle(fn, st) {
   async function process({ type, data }) {
@@ -28,6 +29,8 @@ console.log(`Started Worker: ${JSON.stringify(config)}`);
 handle(
   async (str) => {
     const start = Date.now();
+
+    await wait(Math.floor(Math.random() * 1000));
 
     const took = Date.now() - start;
 
